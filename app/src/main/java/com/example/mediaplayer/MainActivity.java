@@ -32,8 +32,15 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
-                statusTextView.setText("Reproduciendo");
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+                    playButton.setText("Reproducir");
+                    statusTextView.setText("Pausado");
+                } else {
+                    mediaPlayer.start();
+                    playButton.setText("Pausar");
+                    statusTextView.setText("Reproducir");
+                }
             }
         });
 
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 mediaPlayer.pause();
                 mediaPlayer.seekTo(0);
                 statusTextView.setText("Detenido");
+                playButton.setText("Reproducir");
             }
         });
 
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             public void onClick(View v) {
                 mediaPlayer.setLooping(true);
                 mediaPlayer.start();
+                playButton.setText("Pausar");
                 statusTextView.setText("Reproduciendo en bucle");
             }
         });

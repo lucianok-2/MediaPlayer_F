@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Agrega el recurso de imagen que deseas mostrar -->
+
 
     <ImageView
         android:id="@+id/imageView"
