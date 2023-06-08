@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">MediaPlayer</string>
+    <string name="play">Reproducir</string>
+    <string name="pause">Pausar</string>
+    <string name="stop">Detenido</string>
+    <string name="loop">Reproduciendo en bucle</string>
+    <string name="move_up">Desplazamiento vertical hacia arriba</string>
+    <string name="move_down">Desplazamiento vertical hacia abajo</string>
+    <string name="victory_audio">victory_audio</string>
+    <string name="defeat_audio">defeat_audio</string>
+    <string name="background_music">background_music</string>
+    <string name="sensor_name">Sensor Name:</string>
+    <string name="sensor_vendor">Vendor:</string>
+    <string name="sensor_version">Version:</string>
+    <string name="sensor_range">Range:</string>
+    <string name="sensor_resolution">Resolution:</string>
+    <string name="sensor_info">Sensor Info</string>
+    <string name="acceleration">Acceleration</string>
 </resources>

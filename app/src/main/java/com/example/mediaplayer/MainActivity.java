@@ -2,6 +2,7 @@ package com.example.mediaplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.media.MediaPlayer;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private MediaPlayer mediaPlayer;
+    private Button next;
     private GestureDetector gestureDetector;
     private TextView statusTextView;
 
@@ -24,9 +26,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.dbz_cancerbero); // R.raw.audio es el archivo de sonido generado
+        mediaPlayer = MediaPlayer.create(this, R.raw.dbz_cancerbero);
         gestureDetector = new GestureDetector(this, this);
         statusTextView = findViewById(R.id.statusTextView);
+        next = findViewById(R.id.Next);
 
         Button playButton = findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -34,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             public void onClick(View v) {
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
-                    playButton.setText("Reproducir");
-                    statusTextView.setText("Pausado");
+                    playButton.setText(R.string.play);
+                    statusTextView.setText(R.string.pause);
                 } else {
                     mediaPlayer.start();
-                    playButton.setText("Pausar");
-                    statusTextView.setText("Reproducir");
+                    playButton.setText(R.string.pause);
+                    statusTextView.setText(R.string.play);
                 }
             }
         });
@@ -50,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             public void onClick(View v) {
                 mediaPlayer.pause();
                 mediaPlayer.seekTo(0);
-                statusTextView.setText("Detenido");
-                playButton.setText("Reproducir");
+                statusTextView.setText(R.string.stop);
+                playButton.setText(R.string.play);
             }
         });
 
@@ -61,8 +64,16 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             public void onClick(View v) {
                 mediaPlayer.setLooping(true);
                 mediaPlayer.start();
-                playButton.setText("Pausar");
-                statusTextView.setText("Reproduciendo en bucle");
+                playButton.setText(R.string.pause);
+                statusTextView.setText(R.string.loop);
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Acelerometro.class);
+                startActivity(intent);
             }
         });
     }
@@ -76,9 +87,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         if (Math.abs(velocityY) > Math.abs(velocityX)) {
             if (e1.getY() > e2.getY()) {
-                statusTextView.setText("Desplazamiento vertical hacia arriba");
+                statusTextView.setText(R.string.move_up);
             } else {
-                statusTextView.setText("Desplazamiento vertical hacia abajo");
+                statusTextView.setText(R.string.move_down);
             }
             return true;
         }
